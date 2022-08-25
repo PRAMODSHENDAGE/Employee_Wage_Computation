@@ -22,15 +22,18 @@ namespace EmployeeWageComputation
         public void CalculateEmpWage()
         {
             Random random = new Random();
-            int empCheck = random.Next(0, 3);
-            switch (empCheck)
+            for (int i = 0; i < WORKING_DAYS; i++)
             {
-                case IS_FULL_TIME:
-                    empHrs = FULL_TIME_HR;
-                    break;
-                case IS_PART_TIME:
-                    empHrs = PART_TIME_HR;
-                    break;
+                int empCheck = random.Next(0, 3);
+                switch (empCheck)
+                {
+                    case IS_FULL_TIME:
+                        empHrs += FULL_TIME_HR;
+                        break;
+                    case IS_PART_TIME:
+                        empHrs += PART_TIME_HR;
+                        break;
+                }
             }
             totalEmpWage = WAGE_PER_HR * empHrs;
             Console.WriteLine(totalEmpWage);
