@@ -14,7 +14,7 @@ namespace EmployeeWageComputation
         {
             Random random = new Random();
             int empCheck = random.Next(0, 2);
-            if (empCheck == 0)
+            if (empCheck == IS_FULL_TIME)
                 Console.WriteLine("Employee is present");
             else
                 Console.WriteLine("Employee is absent");
@@ -22,7 +22,7 @@ namespace EmployeeWageComputation
         public void CalculateEmpWage()
         {
             Random random = new Random();
-            for (int i = 0; i < WORKING_DAYS; i++)
+            for (int i = 0; i < WORKING_DAYS && empHrs < 100; i++)
             {
                 int empCheck = random.Next(0, 3);
                 switch (empCheck)
@@ -35,8 +35,10 @@ namespace EmployeeWageComputation
                         break;
                 }
             }
+
             totalEmpWage = WAGE_PER_HR * empHrs;
             Console.WriteLine(totalEmpWage);
         }
+
     }
 }

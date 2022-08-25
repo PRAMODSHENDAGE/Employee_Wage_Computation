@@ -1,5 +1,5 @@
 ﻿
 using EmployeeWageComputation;
 
-EmployeeWage Monthlywage = new EmployeeWage();
-Monthlywage.CalculateEmpWage();
+EmployeeWage totalempwage = new EmployeeWage();
+totalempwage.CalculateEmpWage();
