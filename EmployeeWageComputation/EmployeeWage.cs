@@ -39,6 +39,5 @@ namespace EmployeeWageComputation
             totalEmpWage = WAGE_PER_HR * empHrs;
             Console.WriteLine(totalEmpWage);
         }
-
     }
 }
