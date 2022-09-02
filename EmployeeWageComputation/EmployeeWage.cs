@@ -8,36 +8,34 @@ namespace EmployeeWageComputation
 {
     internal class EmployeeWage
     {
-        const int IS_FULL_TIME = 0, IS_PART_TIME = 1, WAGE_PER_HR = 20, FULL_TIME_HR = 8, PART_TIME_HR = 4, WORKING_DAYS = 20;
-        int totalEmpWage = 0, empHrs = 0;
-        public void Attendence()
+        public const int IS_PART_TIME = 1;
+        public const int IS_FULL_TIME = 2;
+        public int ComputeEmpWages(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
         {
-            Random random = new Random();
-            int empCheck = random.Next(0, 2);
-            if (empCheck == IS_FULL_TIME)
-                Console.WriteLine("Employee is present");
-            else
-                Console.WriteLine("Employee is absent");
-        }
-        public void CalculateEmpWage()
-        {
-            Random random = new Random();
-            for (int i = 0; i < WORKING_DAYS && empHrs < 100; i++)
+            int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0; //initializing Variable
+            while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays <= numOfWorkingDays)
             {
-                int empCheck = random.Next(0, 3);
-                switch (empCheck)
+                totalWorkingDays++;
+                Random random = new Random();
+                int empCheck = random.Next(0, 3); //Random Value passes 0 to 2
+                switch (empCheck) 
                 {
-                    case IS_FULL_TIME:
-                        empHrs += FULL_TIME_HR;
-                        break;
                     case IS_PART_TIME:
-                        empHrs += PART_TIME_HR;
+                        empHrs = 4;
+                        break;
+                    case IS_FULL_TIME:
+                        empHrs = 8;
+                        break;
+                    default:
+                        empHrs = 0;
                         break;
                 }
+                totalEmpHrs += empHrs;
+                Console.WriteLine("Day :" + totalWorkingDays + " Emp Hrs :" + empHrs);
             }
-
-            totalEmpWage = WAGE_PER_HR * empHrs;
-            Console.WriteLine(totalEmpWage);
+            int totalEmpWage = totalEmpHrs * empRatePerHour;
+            Console.WriteLine("Total Emp Wage for company : " + company + " is : " + totalEmpWage);
+            return totalEmpWage;
         }
     }
 }
